@@ -45,7 +45,7 @@ class App extends Component {
           <div className="App__Aside"></div>
           <div className="App__Form">
             <div className="PageSwitcher">
-                {this.state.user ? <div className = 'PageSwitcher__Item'>You signed in!</div> :
+                {this.state.user ? <div className = 'PageSwitcher__Item'>{this.state.user.email}You signed in!</div> :
                    (<><NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
                    <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink></>)}
               
@@ -56,7 +56,7 @@ class App extends Component {
                    <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
               </div>
 
-              <Route exact path="/" component={SignupPage} signedIn={this.signedIn}>
+              <Route exact path="/" render={(props) => <SignupPage {...props} signedIn={this.signedIn}/>}>
               </Route>
               <Route path="/sign-in" render={(props) => <LoginPage {...props} signedIn={this.signedIn}/>}>
                 
